@@ -3,8 +3,10 @@ package com.chiefdeveloper.dribblesmarthome
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,12 +33,13 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun RoundedIconButton(
     text: String,
+    state: String,
     icon: Painter,
     color: Color
 ) {
     Column(
         Modifier
-            .size(80.dp)
+            .size(100.dp)
             .clickable { },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -52,12 +55,22 @@ fun RoundedIconButton(
             Image(painter = icon, modifier = Modifier.size(30.dp),contentDescription = "Null")
         }
 
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(2.dp))
         
         Text(text = text, modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             color = Color.Black)
+
+        Row (modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center){
+
+            Text(text = state, modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                fontSize = 12.sp,
+                color = Color.Gray)
+
+        }
         
     }
 
@@ -67,6 +80,7 @@ fun RoundedIconButton(
 @Composable
 fun DefaultPreview() {
     RoundedIconButton(text = "Camera",
+        "On",
         icon = painterResource(id = R.drawable.camera),
         color = Color(0xffFEF4E7)
     )
